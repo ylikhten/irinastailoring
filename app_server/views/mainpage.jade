@@ -1,0 +1,45 @@
+extends ./layout
+
+block content
+
+  div.strapline
+    //h1= pageHeader.title
+    small &nbsp;#{pageHeader.strapline}
+
+  div.container
+    div.row
+      div.column
+        p Contact us by phone
+        p 720 XXX XXXX
+      div.column
+        p Send us an email
+        p irinastailoring@checkthis.edu
+    br
+    br
+    div.row
+      div.column
+        p Hours
+        p Closed Wednesday, Sunday
+        p 9am to 6 pm Monday, Tuesday, Thursday
+        p 9am to 5pm Friday
+        p 9am to 2pm Saturday
+        p Closed on these holidays: Christmas, New Years, Memorial Day, 4th of July, and Labor Day
+
+      div.column
+        p Address
+          p xxxx S. Parker Rd, Parker, CO
+          p Southwest corner of Parker Rd. and Main Street
+          div(id='map', class='map')
+        p My Map
+          div.map#map
+
+  div.links
+    table.table
+      thead
+        td
+          a(href='/services') Services and FAQ
+        td
+          a(href='/guestbook') Guestbook and Reviews
+        td
+          a(href='/about') About
+

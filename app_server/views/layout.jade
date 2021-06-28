@@ -1,0 +1,21 @@
+doctype html
+html(ng-app='irinasTailoring')
+  head
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title= title
+    link(rel='stylesheet', href='/bootstrap/css/bootstrap.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+
+  body
+    header
+      a(href='/') Irina's Tailoring
+
+    .main-content
+      block content
+
+    footer
+      .col-xs-12
+        small &copy; Irina's Tailoring 2021
+
+  script(src='/bootstrap/js/bootstrap.min.js')
+
