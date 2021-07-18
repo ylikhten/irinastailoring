@@ -7,14 +7,13 @@ block content
     .container(ng-controller="reviewListCtrl")
       .align-left
         a(href='/guestbook/add_review') Add Review
-      .error {{ message }}
       .list-group
-        .list-group-item(ng-repeat="review in data.reviews")
-          h4
-            .row
-              .column.smol-left
-                p
-                  #[.name {{ review.name }}.] #[.date {{ review.date }}]
-              .column
-                p {{ review.review }}
+        each review in reviews
+          .list-group-item
+            h4
+              .row
+                .column.smol-left
+                  p #{review.name}
+                .column
+                  p #{review.review}
 
