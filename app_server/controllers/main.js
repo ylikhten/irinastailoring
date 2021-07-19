@@ -33,25 +33,26 @@ module.exports.services = function (req, res) {
 /*** Guestbook page methods ***/
 
 /* GET guestbook helper method */
-var renderGuestbook = function(req, res, body){
+var renderGuestbook = function(req, res){
   res.render('guestbook', {
     title: 'Guestbook',
     pageHeader: {
       title: 'Guestbook and Reviews',
       strapline: 'Hi leave nice review pls'
     },
-    reviews: body // maybe add error trapping when loading reviews page
+    //reviews: body // maybe add error trapping when loading reviews page
   });
 
 };
 
 /* GET guestbook page  */
 module.exports.guestbook = function (req, res) {
-  path = '/api/reviews';
+  renderGuestbook(req, res);
+  /*path = '/api/reviews';
   axios.get(apiOptions.server + path).then(function(response){
     console.log(response.data);
     renderGuestbook(req, res, response.data); 
-  });
+  });*/
  
 };
 
