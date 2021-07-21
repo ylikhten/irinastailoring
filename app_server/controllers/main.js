@@ -56,6 +56,24 @@ module.exports.guestbook = function (req, res) {
  
 };
 
+
+/*** Add Review page methods ***/
+
+/* Get add review helper method */
+var renderReviewsForm = function(req, res) {
+  res.render('add_review', {
+   title: 'New Review',
+   pageHeader: 'Add a new review for Irina\'s Tailoring', 
+   error: req.query.err,
+   url: req.originalUrl 
+  });
+};
+
+/* Get add review page */
+module.exports.addReview = function(req, res){
+  renderReviewsForm(req, res);
+};
+
 var _showError = function(req, res, status){
   var message, error, content;
   if(status === 404){
@@ -69,6 +87,7 @@ var _showError = function(req, res, status){
   }
   res.status(status);
   res.render('error', {
+    title: 'Error',
     message: message,
     error: error,
     content: content
@@ -80,7 +99,6 @@ var _showError = function(req, res, status){
 module.exports.doAddReview = function(req, res) {
   var requrestOptions, path, postdata;
   path = '/api/reviews/new';
-
   postdata = {
     name: req.body.name,
     email: req.body.email,
@@ -93,9 +111,10 @@ module.exports.doAddReview = function(req, res) {
             !check('postdata.email').isEmail())){
       res.redirect('guestbook/add_review/?err=email');
   } else{
-    axis.post(apiOptions.server + path, postdata).then( 
-      function(response, body){
-        if(response.statusCode == 201){
+    axios.post(apiOptions.server + path, postdata).then( 
+      function(response){
+        console.log(response);
+        if(response.status === 201){
           res.redirect('/guestbook');
         }
       }
@@ -105,23 +124,6 @@ module.exports.doAddReview = function(req, res) {
     );
   }
 
-};
-
-/*** Add Review page methods ***/
-
-/* Get add review helper method */
-var renderReviewsForm = function(req, res) {
-  res.render('add_review', {
-   title: 'New Review',
-   pageHeader: 'Add a new review for Irina\'s Tailoring', 
-   error: req.query.err,
-   url: req.originalURL 
-  });
-};
-
-/* Get add review page */
-module.exports.addReview = function(req, res){
-  renderReviewsForm(req, res);
 };
 
 /*** About page methods ***/

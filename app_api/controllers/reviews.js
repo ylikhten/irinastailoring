@@ -38,7 +38,7 @@ module.exports.addReview = function(req, res) {
     name: req.body.name,
     email: req.body.email,
     review: req.body.review
-    }, function(err, review) {
+    }, function(err, reviews) {
       if(err){
         sendJsonResponse(res, 400, err);
       } else {
